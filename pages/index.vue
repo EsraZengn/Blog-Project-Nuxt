@@ -1,75 +1,53 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        blog-project
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="home-page">
+    <section class="intro">
+      <h1>Wonders through a microscope!</h1>
+    </section>
+    <PostList />
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
+import PostList from "@/components/Posts/PostList";
 
-export default Vue.extend({})
+export default {
+  components: {
+    PostList,
+  },
+};
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+<style scoped>
+.intro {
+  height: 300px;
+  position: relative;
+  padding: 30px;
+  box-sizing: border-box;
+  background-image: url("~assets/images/main-background.jpg");
+  background-position: center;
+  background-size: cover;
+  /* opacity: 0.5; */
+}
+
+.intro h1 {
+  position: absolute;
   text-align: center;
+  top: 15%;
+  left: 10%;
+  width: 80%;
+  font-size: 3em;
+  font-weight: bolder;
+  color: rgb(0, 23, 55);
+  padding: 30px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  /* border: 1px solid azure;
+  background-color: azure; */
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+@media (min-width: 768px) {
+  .intro h1 {
+    font-size: 2.5em;
+  }
 }
 </style>
