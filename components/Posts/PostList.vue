@@ -2,32 +2,27 @@
   <section class="post-list">
     <PostPreview
       :is-admin="isAdmin"
-      id="1"
-      title="First microscope image"
-      previewText="Here is my first post!"
-      thumbnail="https://ichef.bbci.co.uk/images/ic/320xn/p023r74v.jpg"
-    />
-    <PostPreview
-      :is-admin="isAdmin"
-      id="2"
-      title="Second microscope image"
-      previewText="Here is my second post!"
-      thumbnail="https://previews.123rf.com/images/watiporn/watiporn1807/watiporn180700004/110661225-science-plant-cells-by-light-microscope.jpg"
+      v-for="post in posts"
+      :key="post.id"
+      :id="post.id"
+      :title="post.title"
+      :previewText="post.previewText"
+      :thumbnail="post.thumbnail"
     />
   </section>
 </template>
 
 <script>
-import PostPreview from "@/components/Posts/PostPreview";
 export default {
   name: "PostList",
-  components: {
-    PostPreview,
-  },
   props: {
     isAdmin: {
       type: Boolean,
       default: false,
+    },
+    posts: {
+      type: Array,
+      required: true,
     },
   },
 };

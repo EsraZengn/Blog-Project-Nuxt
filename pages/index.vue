@@ -3,16 +3,16 @@
     <section class="intro">
       <h1>Wonders through a microscope!</h1>
     </section>
-    <PostList />
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
 <script>
-import PostList from "@/components/Posts/PostList";
-
 export default {
-  components: {
-    PostList,
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    },
   },
 };
 </script>
@@ -26,7 +26,6 @@ export default {
   background-image: url("~assets/images/main-background.jpg");
   background-position: center;
   background-size: cover;
-  /* opacity: 0.5; */
 }
 
 .intro h1 {

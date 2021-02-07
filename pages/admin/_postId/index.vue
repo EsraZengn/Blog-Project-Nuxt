@@ -1,28 +1,31 @@
 <template>
   <div class="admin-post-page">
     <section class="update-form">
-      <PostForm :post="loadedPost" />
+      <PostForm :post="loadedPost" @submit="onSubmitted" />
     </section>
   </div>
 </template>
 
 <script>
-import PostForm from "@/components/Admin/PostForm";
 export default {
   layout: "admin",
-  components: {
-    PostForm,
+
+  methods: {
+    onSubmitted(editedPost) {
+      this.$store.dispatch("editPost", editedPost).then(() => {
+        this.$router.push("/admin");
+      });
+    },
   },
-  data() {
-    return {
-      loadedPost: {
-        author: "Ez",
-        title: "Cells from a plant leave",
-        content: "I took a look at the leave of my house plant...",
-        thumbnailLink:
-          "https://i.pinimg.com/originals/de/61/a5/de61a54fd44a6c3a5c2fbf5e2744dc93.png",
-      },
-    };
+  asyncData(context) {
+    return context.app.$axios
+      .$get(`/posts/${context.params.postId}.json`)
+      .then((data) => {
+        return {
+          loadedPost: { ...data, id: context.params.postId },
+        };
+      })
+      .catch((e) => context.error(e));
   },
 };
 </script>
